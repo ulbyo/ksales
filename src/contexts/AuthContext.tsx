@@ -35,11 +35,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             title: "Signed in",
             description: "You have successfully signed in.",
           });
+          navigate("/");
         } else if (event === 'SIGNED_OUT') {
           toast({
             title: "Signed out",
             description: "You have been signed out.",
           });
+          navigate("/");
         }
       }
     );
@@ -52,7 +54,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     });
 
     return () => subscription.unsubscribe();
-  }, []);
+  }, [navigate]);
 
   const signUp = async (email: string, password: string) => {
     try {
@@ -76,7 +78,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) throw error;
-      navigate("/");
+      // Navigation happens in onAuthStateChange
     } catch (error: any) {
       toast({
         title: "Login error",
@@ -89,7 +91,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const signOut = async () => {
     try {
       await supabase.auth.signOut();
-      navigate("/");
+      // Navigation happens in onAuthStateChange
     } catch (error: any) {
       toast({
         title: "Sign out error",
