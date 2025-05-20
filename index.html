@@ -1,20 +1,32 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>kpop-album-pulse</title>
-    <meta name="description" content="Lovable Generated Project" />
+    <title>K-Pop Album Pulse</title>
+    <meta name="description" content="Track K-Pop album sales and trends" />
     <meta name="author" content="Lovable" />
 
-    <meta property="og:title" content="kpop-album-pulse" />
-    <meta property="og:description" content="Lovable Generated Project" />
+    <meta property="og:title" content="K-Pop Album Pulse" />
+    <meta property="og:description" content="Track K-Pop album sales and trends" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@lovable_dev" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <script>
+      (function() {
+        // Redirect logic for GitHub Pages SPA
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect.replace('/ksales/', '/'));
+        }
+      })();
+    </script>
   </head>
 
   <body>
