@@ -9,7 +9,147 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      albums: {
+        Row: {
+          artist_id: string
+          cover_url: string | null
+          created_at: string | null
+          id: string
+          release_date: string
+          title: string
+        }
+        Insert: {
+          artist_id: string
+          cover_url?: string | null
+          created_at?: string | null
+          id?: string
+          release_date: string
+          title: string
+        }
+        Update: {
+          artist_id?: string
+          cover_url?: string | null
+          created_at?: string | null
+          id?: string
+          release_date?: string
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "albums_artist_id_fkey"
+            columns: ["artist_id"]
+            isOneToOne: false
+            referencedRelation: "artists"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      artists: {
+        Row: {
+          created_at: string | null
+          id: string
+          image_url: string | null
+          name: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          image_url?: string | null
+          name: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          image_url?: string | null
+          name?: string
+        }
+        Relationships: []
+      }
+      bookmarks: {
+        Row: {
+          album_id: string
+          created_at: string | null
+          id: string
+          user_id: string
+        }
+        Insert: {
+          album_id: string
+          created_at?: string | null
+          id?: string
+          user_id: string
+        }
+        Update: {
+          album_id?: string
+          created_at?: string | null
+          id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bookmarks_album_id_fkey"
+            columns: ["album_id"]
+            isOneToOne: false
+            referencedRelation: "albums"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string | null
+          id: string
+          username: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string | null
+          id: string
+          username?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string | null
+          id?: string
+          username?: string | null
+        }
+        Relationships: []
+      }
+      sales: {
+        Row: {
+          album_id: string
+          created_at: string | null
+          id: string
+          sales_count: number
+          sales_date: string
+          sales_type: string
+        }
+        Insert: {
+          album_id: string
+          created_at?: string | null
+          id?: string
+          sales_count: number
+          sales_date: string
+          sales_type: string
+        }
+        Update: {
+          album_id?: string
+          created_at?: string | null
+          id?: string
+          sales_count?: number
+          sales_date?: string
+          sales_type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sales_album_id_fkey"
+            columns: ["album_id"]
+            isOneToOne: false
+            referencedRelation: "albums"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
